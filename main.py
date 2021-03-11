@@ -14,9 +14,12 @@ def get_new_blognnone_contetnt():
   contents = blogs.find('div',class_='content')
   contents_title_box = contents.find_all('div',class_='content-title-box')
 
+  new_blogs = []
   for title_box in contents_title_box:
     tag_a = title_box.find('a')
-    print(URL+tag_a['href'])
+    new_blogs.append(URL+tag_a['href'])
+  
+  return new_blogs
 
 def update_blogs(blog_path):
   if "blog_path" in db.keys():
@@ -32,14 +35,14 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if message.author == client:
+  if message.author == client.user:
     return
 
-  get_new_blognnone_contetnt()
-  
+  new_blogs = get_new_blognnone_contetnt()
 
-  # print(content.prettify())
-  # if message.content.startswith('$getHTML'):
-    # await message.channel.send(content.prettify())
+  for new_blog in new_blogs:
+    if new_blog not in db["blog_path"]:
+      await message.channel.send(new_blog)
+      update_blogs(new_blog)
 
 client.run(os.getenv('TOKEN'))
