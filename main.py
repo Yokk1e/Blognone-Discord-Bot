@@ -3,6 +3,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from replit import db
+from keep_alive import keep_alive
 
 client = discord.Client()
 
@@ -45,4 +46,5 @@ async def on_message(message):
       await message.channel.send(new_blog)
       update_blogs(new_blog)
 
+keep_alive()
 client.run(os.getenv('TOKEN'))
