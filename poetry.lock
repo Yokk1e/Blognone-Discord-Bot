@@ -230,7 +230,7 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [metadata]
-content-hash = "ae568cf2b98faaf0a81d0a0ed964733375b431afd01b620d86620696e1cd0af8"
+content-hash = "6c7326e9de0a25c9f711ed1fa7ad4eee96cf26ce7635de18e3d3d673efc192b1"
 python-versions = "^3.8"
 
 [metadata.files]
